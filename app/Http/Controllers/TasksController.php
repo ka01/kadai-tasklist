@@ -18,12 +18,13 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //ログイン認証不要
-        $tasks = Task::paginate(10);
         
-        return view('tasks.index', [
-            'tasks' => $tasks,
-            ]);
+        
+        /*ログイン認証不要*/
+        $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+        
+        redirect ('/');
+     
     }
 
     /**
